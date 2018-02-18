@@ -20,5 +20,5 @@ app.use(function *() {
 var server = app.listen(3000, function() {
   console.log('Koa is listening to http://localhost:3000');
 
-  myth('~/Sites/github.com/mythril/solidity_examples/origin.sol');
+  myth('./contracts/origin.sol');
 });
