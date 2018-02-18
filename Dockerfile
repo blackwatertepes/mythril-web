@@ -8,4 +8,6 @@ RUN apt-get install -y curl sudo \
   && apt-get install -y vim \
   && npm install
 
+EXPOSE 3000
+
 CMD ["npm","start"]
