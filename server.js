@@ -17,8 +17,9 @@ app.use(function *() {
   this.body = 'Hello world';
 });
 
-var server = app.listen(3000, function() {
-  console.log('Koa is listening to http://localhost:3000');
+const PORT = process.env.PORT || 3000;
+var server = app.listen(PORT, function() {
+  console.log(`Koa is listening to http://localhost:${PORT}`);
 
   myth('./contracts/origin.sol');
 });
