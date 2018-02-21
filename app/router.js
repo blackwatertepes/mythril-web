@@ -1,5 +1,6 @@
 const Router = require('koa-router');
 const util = require('util');
+const db = require('./db');
 
 let router = new Router();
 let exec = util.promisify(require('child_process').exec);
@@ -19,6 +20,11 @@ let output = (result) => {
   }
   return JSON.stringify(response);
 }
+
+router.get('/healthcheck', async (ctx) => {
+  let res = await db.query('SELECT VERSION()', []);
+  ctx.body = res.fields[0];
+});
 
 router.get('/infura/:net/:addr', async (ctx) => {
   let result = await myth(`--infura-${ctx.params.net}`, ctx.params.addr);

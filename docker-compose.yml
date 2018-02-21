@@ -1,0 +1,30 @@
+version: '2'
+services:
+  web:
+    build: .
+    command: 'nodemon --watch server.js'
+    ports:
+      - "5000:5000"
+    env_file: .env
+    depends_on:
+      - db
+    volumes:
+      - ./app:/opt/app
+    networks:
+      - mythril
+
+  db:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    volumes:
+      - "postgres:/var/lib/postgresql/data"
+    networks:
+      - mythril
+
+networks:
+  mythril:
+    driver: bridge
+
+volumes:
+  postgres:

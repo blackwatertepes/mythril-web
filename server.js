@@ -1,18 +1,18 @@
 const Koa = require('koa');
-const router = require('./router');
-const PORT = process.env.PORT || 3000;
+const db = require('./app/db');
+const router = require('./app/router');
 
 let app = new Koa();
 
-app.listen(PORT, function() {
-  console.log(`Koa is running on port ${PORT}`);
+app.listen(process.env.PORT, function() {
+  console.log(`Koa is running on port ${process.env.PORT}`);
 });
 
 app
   .use(router.routes())
   .use(router.allowedMethods())
   .use(function *() {
-    this.body = 'Hello world';
+    this.body = "Hello World";
   });
 
 module.exports = app;
